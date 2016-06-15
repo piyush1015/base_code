@@ -45,18 +45,29 @@ app.get('/blogs', function (req, res) {
 app.get('/addblog', function(req, res){
     res.render('addPost.ejs')
 })
+
 app.get('/', function(req, res){
-    res.render('index.ejs')
+    Blog.find({}).limit(3).exec(function(err, blogs){
+        if(!err && blogs){
+            res.render('index.ejs',{
+                data :  blogs
+            })
+        } else{
+            console.log(err);
+            res.status(500).send("something went wrong while fetching blog summary");
+        }
+    })
 })
 
-app.post('/api/adduser', function (req, res) {
+app.post('/api/addBlog', function (req, res) {
     var blog = new Blog(
         {
             title : req.body.title,
             publisher : req.body.publisher,
             text : req.body.text,
             category : req.body.category,
-            subCategory : req.body.subCategory
+            subCategory : req.body.subCategory,
+            createdOn : Date.now()
         }
     );
 
@@ -87,7 +98,7 @@ app.get('/api/blogs', function (req, res) {
 app.get('/blog/:id', function(req, res){
     Blog.findById( req.params.id, function ( err, blog ) {
         if(!err && blog){
-            res.render('userDetail.ejs',{
+            res.render('blogDetail.ejs',{
                 data : blog
             })
         } else {
@@ -97,7 +108,7 @@ app.get('/blog/:id', function(req, res){
 } )
 
 app.get('/editblog/:id', function(req, res){
-    Blog.findById( req.params.id, function ( err, user ) {
+    Blog.findById( req.params.id, function ( err, blog ) {
         if(!err && blog){
             res.render('editPost.ejs',{
                 data : blog
@@ -109,7 +120,7 @@ app.get('/editblog/:id', function(req, res){
 
 })
 
-app.post('/api/editpost/:id', function (req, res) {
+app.post('/api/editBlog/:id', function (req, res) {
     // http://mongoosejs.com/docs/api.html#model_Model.findById
     Blog.findById( req.params.id, function ( err, blog ) {
             blog.title = req.body.title,

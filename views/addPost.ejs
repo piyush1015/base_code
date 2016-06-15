@@ -35,18 +35,18 @@
     <div class="panel panel-primary">
         <div class="panel-heading">Post a new blog. Spread the joy</div>
         <div class="panel-body">
-                <form role="form" method="post" action="/api/adduser" id="contact-form" class="contact-form">
+                <form role="form" method="post" action="/api/addBlog" id="contact-form" class="contact-form">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="Name">Blog title</label>
-                                <input type="text" class="form-control" name="name" autocomplete="off" id="title" placeholder="Enter Title">
+                                <input type="text" class="form-control" name="title" autocomplete="off" id="title" placeholder="Enter Title">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="department">Publisher Name</label>
-                                <input type="text" class="form-control" name="department" autocomplete="off" id="department" placeholder="Enter Publisher Name">
+                                <input type="text" class="form-control" name="publisher" autocomplete="off" id="publisher" placeholder="Enter Publisher Name">
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <textarea class="form-control textarea" rows="3" name="Message" id="Message" placeholder="Please enter the blog content in this section"></textarea>
+                                <textarea class="form-control textarea" rows="5" name="text" id="text" placeholder="Please enter the blog content in this section"></textarea>
                             </div>
                         </div>
                     </div>
