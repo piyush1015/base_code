@@ -54,7 +54,13 @@
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="/blogs">Blogs</a>
+                    <a href="about.html">About</a>
+                </li>
+                <li>
+                    <a href="post.html">Sample Post</a>
+                </li>
+                <li>
+                    <a href="contact.html">Contact</a>
                 </li>
             </ul>
         </div>
@@ -65,17 +71,16 @@
 
 <!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
-<header class="intro-header" style="background-image: url('../public/img/home-bg.jpg')">
+<header class="intro-header">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>NIET Blogs</h1>
-                    <hr class="small">
-                    <span class="subheading">Student blog portal</span>
-                </div>
-            </div>
+        <div class="row" style="text-align: center">
+            <h1>Admin console</h1>
         </div>
+    </div>
+    <div style="text-align: right">
+        <a href="/addBlog" style="padding-right: 10px">
+            <button class="btn btn-primary">Add a new blog</button>
+        </a>
     </div>
 </header>
 
@@ -85,7 +90,7 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <%for(var i=0;i<data.length;i++){%>
             <div class="post-preview">
-                <a href="/blogdetail/<%=data[i]._id%>">
+                <a href="/blog/<%=data[i]._id%>">
                     <h2 class="post-title">
                         <%=data[i].title%>
                     </h2>
@@ -94,15 +99,16 @@
                     </h3>
                 </a>
                 <p class="post-meta">Posted by <a href="#"><%=data[i].publisher%></a> on <%=data[i].createdOn%></p>
+                <a href="/editBlog/<%=data[i]._id%>">
+                    <button class="btn btn-primary">Edit this blog</button>
+                </a>
+                <a href="/api/deleteBlog/<%=data[i]._id%>">
+                    <button class="btn btn-danger">Delete this blog</button>
+                </a>
+
             </div>
             <hr>
             <%}%>
-            <!-- Pager -->
-            <ul class="pager">
-                <li class="next">
-                    <a href="/blogs">All Posts &rarr;</a>
-                </li>
-            </ul>
         </div>
     </div>
 </div>

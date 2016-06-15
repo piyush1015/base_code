@@ -42,6 +42,19 @@ app.get('/blogs', function (req, res) {
     });
 });
 
+app.get('/admin', function (req, res) {
+    // http://mongoosejs.com/docs/api.html#query_Query-find
+    Blog.find({}, function ( err, blogs ){
+        if(!err && blogs){
+            res.render('admin.ejs',{
+                data :  blogs
+            })
+        } else {
+            console.log(err)
+        }
+    });
+});
+
 app.get('/addblog', function(req, res){
     res.render('addPost.ejs')
 })
@@ -107,7 +120,7 @@ app.get('/blog/:id', function(req, res){
     });
 } )
 
-app.get('/editblog/:id', function(req, res){
+app.get('/editBlog/:id', function(req, res){
     Blog.findById( req.params.id, function ( err, blog ) {
         if(!err && blog){
             res.render('editPost.ejs',{
@@ -140,16 +153,17 @@ app.post('/api/editBlog/:id', function (req, res) {
     });
 });
 
-app.get('/api/deleteblog/:id', function (req, res) {
+app.get('/api/deleteBlog/:id', function (req, res) {
     // http://mongoosejs.com/docs/api.html#model_Model.findById
     Blog.findById( req.params.id, function ( err, blog ) {
         // http://mongoosejs.com/docs/api.html#model_Model.remove
         blog.remove( function ( err ){
-            res.status(200, {msg: 'User deleted successfully'})
+           console.log("Blog deleted successfully")
+            res.redirect('/admin')
         });
     });
 })
 
-app.listen(8080);
-console.log('Magic happens on port 8080');
+app.listen(1338);
+console.log('Magic happens on port 1338');
 
