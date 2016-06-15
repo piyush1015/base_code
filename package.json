@@ -1,0 +1,12 @@
+{
+  "name": "MyApp",
+  "version": "0.1.0",
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "ejs": "^2.4.2",
+    "express": "~4.13.4",
+    "mongoose": "~4.4.20"
+  },
+  "author": "Mandeep <smandeep10.01@gmail.com>",
+  "description": "A basic user app"
+}
