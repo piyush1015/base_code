@@ -55,6 +55,7 @@ app.get('/admin', function (req, res) {
     });
 });
 
+
 app.get('/addblog', function(req, res){
     res.render('addPost.ejs')
 })
@@ -162,7 +163,7 @@ app.get('/api/deleteBlog/:id', function (req, res) {
             res.redirect('/admin')
         });
     });
-})
+});
 
 app.listen(1338);
 console.log('Magic happens on port 1338');
